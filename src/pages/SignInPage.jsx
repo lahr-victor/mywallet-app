@@ -1,6 +1,6 @@
 // PACKAGE IMPORTS
 import axios from 'axios';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
@@ -13,6 +13,13 @@ export default function SignInPage() {
   const [isLoading, setIsLoading] = React.useState(false);
   const navigate = useNavigate();
   const { REACT_APP_API_URL } = process.env;
+  const token = localStorage.getItem('token');
+
+  function validateAccess() {
+    if (token) {
+      navigate('/home');
+    }
+  }
 
   function userSignIn(event) {
     event.preventDefault();
@@ -36,6 +43,10 @@ export default function SignInPage() {
     const { name, value } = event.target;
     setForm({ ...form, [name]: value });
   }
+
+  useEffect(() => {
+    validateAccess();
+  }, []);
 
   return (
     <SignInContainer>
