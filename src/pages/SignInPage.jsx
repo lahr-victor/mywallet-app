@@ -20,7 +20,8 @@ export default function SignInPage() {
 
     axios.post(`${REACT_APP_API_URL}/sign-in`, form)
       .then((response) => {
-        localStorage.setItem('bearer token', (response.data));
+        localStorage.setItem('token', (response.data.token));
+        localStorage.setItem('user', (response.data.user));
         navigate('/home');
       })
 
