@@ -16,8 +16,6 @@ export default function HomePage() {
   const token = localStorage.getItem('token');
   function validateAccess() {
     if (!token) {
-      // eslint-disable-next-line no-alert
-      alert('Please sign in to access the application!');
       navigate('/');
     }
   }
