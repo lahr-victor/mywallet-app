@@ -124,7 +124,7 @@ const Header = styled.header`
   color: white;
 `;
 const TransactionsContainer = styled.article`
-  flex-grow: 1;
+  height: 100%;
   background-color: #fff;
   color: #000;
   border-radius: 5px;
@@ -133,9 +133,13 @@ const TransactionsContainer = styled.article`
   flex-direction: column;
   justify-content: space-between;
   overflow: scroll;
+  ul {
+    overflow: scroll;
+  }
   article {
     display: flex;
     justify-content: space-between; 
+    padding-top: 16px;
     strong {
       font-weight: 700;
       text-transform: uppercase;
