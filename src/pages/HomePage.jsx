@@ -12,6 +12,7 @@ export default function HomePage() {
   const [transactions, setTransactions] = React.useState([]);
   const navigate = useNavigate();
   const { REACT_APP_API_URL } = process.env;
+
   const token = localStorage.getItem('token');
   function validateAccess() {
     if (!token) {
@@ -21,8 +22,14 @@ export default function HomePage() {
     }
   }
 
+  function calculateBalance(moneyTransactions) {
+    const initialValue = 0;
+    return moneyTransactions.reduce((accumulator, currentValue) => (
+      (currentValue.type === 'inflow') ? (accumulator + currentValue.value) : (accumulator - currentValue.value)), initialValue);
+  }
+
   const greetingMessage = `Olá, ${localStorage.getItem('user')}`;
-  const totalAmmount = 0;
+  const balance = calculateBalance(transactions);
 
   function loadTransactions() {
     axios.get(`${REACT_APP_API_URL}/transactions`, { headers: { Authorization: `Bearer ${token}` } })
@@ -69,8 +76,8 @@ export default function HomePage() {
 
         <article>
           <strong>Saldo</strong>
-          <Value color={totalAmmount < 0 ? 'outflow' : 'inflow'}>
-            {(totalAmmount).toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
+          <Value color={balance < 0 ? 'outflow' : 'inflow'}>
+            {(balance).toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
           </Value>
         </article>
       </TransactionsContainer>
