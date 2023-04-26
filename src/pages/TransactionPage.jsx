@@ -46,7 +46,7 @@ export default function TransactionsPage() {
     setIsLoading(true);
     const body = {
       description: form.description,
-      value: (form.value * 100),
+      value: (form.value),
       type: (tipo === 'entrada') ? 'inflow' : 'outflow',
     };
     axios.post(

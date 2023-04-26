@@ -61,7 +61,7 @@ export default function HomePage() {
                 <strong>{transaction.description}</strong>
               </div>
               <Value color={transaction.type}>
-                {(transaction.value / 100).toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
+                {(transaction.value).toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
               </Value>
             </ListItemContainer>
           ))}
@@ -70,7 +70,7 @@ export default function HomePage() {
         <article>
           <strong>Saldo</strong>
           <Value color={totalAmmount < 0 ? 'outflow' : 'inflow'}>
-            {(totalAmmount / 100).toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
+            {(totalAmmount).toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
           </Value>
         </article>
       </TransactionsContainer>
